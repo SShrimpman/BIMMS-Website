@@ -16,6 +16,9 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            screens: {
+                'desktop': '1281px',
+            },
             colors: {
                 transparentBg: 'rgba(0,0,0,.4)',
                 bimmsGreen: "#6fc3c0",
