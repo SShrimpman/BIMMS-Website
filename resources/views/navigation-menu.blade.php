@@ -28,7 +28,7 @@
          x-transition:leave="transition ease-in duration-300 transform"
          x-transition:leave-start="translate-x-0"
          x-transition:leave-end="translate-x-full"
-         class="fixed h-full top-0 right-0 items-center backdrop-blur-md z-10 w-full">
+         class="fixed h-full top-0 right-0 items-center backdrop-blur-md z-10 w-full select-none">
       <div class="flex justify-center items-center h-full w-full mt-8">
           <nav class="float-left text-white">
               <ul class="list-none space-y-4 text-center" x-data="{ open: false, account: false }">
@@ -58,7 +58,7 @@
                   <li><a wire:navigate href="/careers" class="block outline-0 no-underline text-xl" href="#">CAREERS</a></li>
                   @auth
                     <li class="relative">
-                      <div class="flex justify-center items-center" @click="account = !account">
+                      <div class="flex justify-center items-center cursor-default" @click="account = !account">
                           <span class="block outline-0 no-underline text-xl text-gray-400" href="#">MANAGE ACCOUNT</span>
                           <svg xmlns="http://www.w3.org/2000/svg" 
                               class="fill-gray-400 ml-2  transition-all"
