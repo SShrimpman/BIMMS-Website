@@ -5,16 +5,9 @@
         <img src="{{ asset('assets/bimmsLogo.png')}}">
       </a>
     </div>
-    <div x-on:click="showMenu = !showMenu" class="desktop:hidden flex items-center justify-end mr-1">
-      {{-- <button class="navbar-burger flex items-center text-white p-3 z-50">
-        <svg class="block h-8 w-8 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-        </svg>
-      </button> --}}
+    <div class="desktop:hidden flex items-center justify-end mr-1">
       <div class="mr-4 md:mr-20 lg:mr-10 text-white z-50">
-        <button x-data="{ hamburger: false }"
-          x-on:click="hamburger = !hamburger"
-          class="flex items-center space-x-2 focus:outline-none">
+        <button x-on:click="hamburger = !hamburger, showMenu = !showMenu, $dispatch('toggle-menu', showMenu)" class="flex items-center space-x-2 focus:outline-none">
             <div class="w-6 h-6 flex items-center justify-center relative">
                 <span x-bind:class="hamburger ? 'translate-y-0 rotate-45' : '-translate-y-2'"
                         class="transform transition w-full h-px bg-current absolute"></span>
@@ -28,14 +21,14 @@
         </button>
       </div>
     </div>
-    <div x-show="showMenu"
+    <div x-show="showMenu" x-on:enter="document.body.classList.add('overflow-hidden')" x-on:leave="document.body.classList.remove('overflow-hidden')"
          x-transition:enter="transition ease-in duration-300 transform"
          x-transition:enter-start="translate-x-full"
          x-transition:enter-end="translate-x-0"
          x-transition:leave="transition ease-in duration-300 transform"
          x-transition:leave-start="translate-x-0"
          x-transition:leave-end="translate-x-full"
-         class="fixed h-full top-0 right-0 items-center backdrop-blur-md z-10 w-full overflow-scroll">
+         class="fixed h-full top-0 right-0 items-center backdrop-blur-md z-10 w-full">
       <div class="flex justify-center items-center h-full w-full mt-8">
           <nav class="float-left text-white">
               <ul class="list-none space-y-4 text-center" x-data="{ open: false, account: false }">
