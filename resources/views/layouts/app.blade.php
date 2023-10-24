@@ -19,7 +19,10 @@
     </head>
     <body class="font-sans antialiased" x-bind:class="menuOpen ? 'overflow-hidden' : ''" x-data="{ menuOpen: false }" x-on:toggle-menu.window="menuOpen = $event.detail">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @livewire('navigation-menu')
+            @if(Route::currentRouteName() !== 'dashboard')
+                @livewire('navigation-menu')
+            @endif
+
 
             <!-- Page Content -->
             <main>
