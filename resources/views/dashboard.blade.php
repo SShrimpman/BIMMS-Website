@@ -1,8 +1,8 @@
-<x-app-layout>
+<div>
     <div class="flex justify-center absolute w-screen z-10">
-            @livewire('navigationmenu')
+            <livewire:navigationmenu id="navbar">
     </div>
-    <div style="perspective: 10px;" class="h-screen overflow-y-auto overflow-x-hidden">
+    <div id="parallax" style="perspective: 10px;" class="h-screen overflow-y-auto overflow-x-hidden">
         <div class="flex justify-center">
             <h1 id="bimms" class="absolute mt-28 desktop:mt-56 text-[7rem] text-white drop-shadow-[0_0_5px_rgba(0,136,175,1)] font-extrabold opacity-0 transition-all ease-in duration-1000 z-10">BIM<span class="text-bimmsGreen">MS</span></h1>
             <img id="X" class="absolute h-20 w-20 mt-64 desktop:mt-[375px] drop-shadow-[0_0_8px_rgba(0,136,175,1)] font-extrabold opacity-0 transition-all ease-in delay-1000 duration-1000 z-10" src="{{ asset('assets/handshake.svg')}}">
@@ -29,35 +29,37 @@
             Hello
         </div>
     </div>
-</x-app-layout>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const element = document.getElementById('bimms');
-        const x = document.getElementById('X');
-        const cts = document.getElementById('cts');
-        const partOf = document.getElementById('partOf');
-        const element2 = document.getElementById('bimms2');
-        const element3 = document.getElementById('bimms3');
-        const element4 = document.getElementById('bimms4');
+        Livewire.on('runScript', function() {
+            const element = document.getElementById('bimms');
+            const x = document.getElementById('X');
+            const cts = document.getElementById('cts');
+            const partOf = document.getElementById('partOf');
+            const element2 = document.getElementById('bimms2');
+            const element3 = document.getElementById('bimms3');
+            const element4 = document.getElementById('bimms4');
 
-        element.classList.remove('opacity-0');
-        x.classList.remove('opacity-0');
-        cts.classList.remove('opacity-0');
-        partOf.classList.remove('opacity-0');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    element2.classList.remove('opacity-0');
-                    element3.classList.remove('opacity-0');
-                    element4.classList.remove('opacity-0');
-                    observer.unobserve(entry.target);
-                }
+            element.classList.remove('opacity-0');
+            x.classList.remove('opacity-0');
+            cts.classList.remove('opacity-0');
+            partOf.classList.remove('opacity-0');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        element2.classList.remove('opacity-0');
+                        element3.classList.remove('opacity-0');
+                        element4.classList.remove('opacity-0');
+                        observer.unobserve(entry.target);
+                    }
+                });
             });
-        });
 
-        observer.observe(element2);
-        observer.observe(element3);
-        observer.observe(element4);
-    })
+            observer.observe(element2);
+            observer.observe(element3);
+            observer.observe(element4);
+        });
+    });
 </script>

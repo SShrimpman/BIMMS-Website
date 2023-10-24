@@ -1,7 +1,7 @@
-<div x-data="{ showMenu: false, hamburger: false }" class="bg-transparent w-screen">
+<div id="navbar" x-data="{ showMenu: false, hamburger: false }" class="w-screen">
     <div class="grid grid-cols-2">
       <div class="flex justify-center">
-        <a href="/" class="w-48 m-4 hover:scale-110 transition-all duration-500">
+        <a wire:navigate href="/" class="w-48 m-4 hover:scale-110 transition-all duration-500">
           <img src="{{ asset('assets/bimmsWhite.png')}}">
         </a>
       </div>

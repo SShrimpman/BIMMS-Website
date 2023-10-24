@@ -6,8 +6,6 @@ use Livewire\Component;
 
 class NavigationMenu extends Component
 {
-
-    
     public function mount()
     {
         // $this->emit('removeClasses');
