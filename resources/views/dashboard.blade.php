@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="flex justify-center absolute w-screen z-10">
-        <livewire:navigation-menu>
+            @livewire('navigationmenu')
     </div>
     <div style="perspective: 10px;" class="h-screen overflow-y-auto overflow-x-hidden">
         <div class="flex justify-center">

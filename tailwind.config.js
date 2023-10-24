@@ -24,6 +24,9 @@ export default {
                 bimmsGreen: "#6fc3c0",
                 darkBlue: "#041C2B",
                 darkGray: "#041C2B9E",
+            },
+            boxShadow: {
+                shadowTop : 'inset 0 4px 6px 0 rgb(31 41 55 / 1)'
             }
         },
     },
