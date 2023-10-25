@@ -6,9 +6,18 @@ use Livewire\Component;
 
 class NavigationMenu extends Component
 {
-    public function mount()
+    public $isScrolled;
+
+    protected $listeners = ['scrolled', 'scrollOnTop'];
+
+    public function scrolled()
     {
-        // $this->emit('removeClasses');
+        $this->isScrolled = true;
+    }
+
+    public function scrollOnTop()
+    {
+        $this->isScrolled = false;
     }
 
     public function render()
