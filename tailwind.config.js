@@ -26,7 +26,8 @@ export default {
                 darkGray: "#041C2B9E",
             },
             boxShadow: {
-                shadowTop : 'inset 0 4px 6px 0 rgb(31 41 55 / 1)'
+                shadowTop : 'inset 0 4px 6px 0 rgb(17 24 39 / 1)',
+                shadowBot : '-2px 2px 6px 0 rgb(17 24 39 / 1)'
             }
         },
     },

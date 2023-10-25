@@ -1,5 +1,5 @@
 <div x-data="{ showMenu: false, hamburger: false }">
-    <div class="grid grid-cols-2 transition-colors duration-500 {{ $isScrolled ? 'bg-white' : 'bg-transparent' }}">
+    <div class="grid grid-cols-2 transition-colors duration-500 {{ $isScrolled ? 'bg-white shadow-shadowBot' : 'bg-transparent' }}">
       <div class="flex justify-center">
         <a href="/" class="w-40 mt-1 mb-2 hover:scale-110 transition-all duration-500">
           <img style="transition: opacity 0.5s ease-in;" src="{{ $isScrolled ? asset('assets/bimmsLogo.png') : asset('assets/bimmsWhite.png') }}">
