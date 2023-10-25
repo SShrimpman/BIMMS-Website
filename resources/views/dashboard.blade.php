@@ -8,7 +8,7 @@
             <img id="X" class="absolute h-20 w-20 mt-64 desktop:mt-[375px] drop-shadow-[0_0_5px_rgba(0,20,20,1)] font-extrabold opacity-0 transition-all ease-in delay-1000 duration-1000 z-10" src="{{ asset('assets/handshake.svg')}}">
             <img id="cts" class="absolute h-80 w-80 mt-52 desktop:mt-[335px] drop-shadow-[0_0_5px_rgba(0,20,20,1)] opacity-0 transition-all ease-in delay-[2000ms] duration-1000 z-10" src="{{ asset('assets/cts.svg')}}">
             <h2 id="partOf" class="absolute mt-[430px] desktop:mt-[575px] text-lg text-white font-extrabold opacity-0 transition-all delay-[3000ms] duration-1000 z-10"><span class="drop-shadow-[0_0_5px_rgba(0,136,175,1)]">BIM<span class="text-bimmsGreen">MS</span></span> is now part of <span class="text-[#0051D6] drop-shadow-[0_0_5px_rgba(0,20,20,1)]">CTS Nordics</span></h2>
-            <img class="h-screen w-screen shadow-lg shadow-gray-800" src="{{ asset('assets/bgSara.png')}}">
+            <img class="h-screen w-screen shadow-md shadow-gray-900" src="{{ asset('assets/bgSara.png')}}">
             <div class="h-screen fixed object-cover inset-x-0 inset-y-0 bg-gradient-to-r from-[#041C2B] to-[#041C2B] opacity-70"></div>
         </div>
         <div style="transform-style: preserve-3d;" class=" relative flex justify-center h-full w-screen -z-10">
@@ -25,8 +25,8 @@
             </div>
             <div class="h-screen fixed object-cover inset-x-0 inset-y-0 bg-gradient-to-r from-[#041C2B] to-[#041C2B] opacity-40"></div>
         </div>
-        <div class="text-[2rem] bg-gray-900 p-8 h-screen text-white shadow-shadowTop">
-            Hello
+        <div class="text-[2rem] text-black bg-white p-8 h-[692px] shadow-shadowTop">
+            The content in here needs to occupy at least 692 pixels
         </div>
     </div>
 </div>
@@ -76,6 +76,11 @@
                         element3.classList.remove('opacity-0');
                         element4.classList.remove('opacity-0');
                         observer.unobserve(entry.target);
+                    } else {
+                        element2.classList.add('opacity-0');
+                        element3.classList.add('opacity-0');
+                        element4.classList.add('opacity-0');
+                        observer.observe(entry.target);
                     }
                 });
             });
