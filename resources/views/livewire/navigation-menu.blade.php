@@ -1,15 +1,15 @@
-<div id="navbar" x-data="{ showMenu: false, hamburger: false }" class="w-screen">
-    <div class="grid grid-cols-2">
+<div x-data="{ showMenu: false, hamburger: false }">
+    <div class="grid grid-cols-2 {{ $isScrolled ? 'bg-white' : 'bg-transparent' }}">
       <div class="flex justify-center">
-        <a wire:navigate href="/" class="w-48 m-4 hover:scale-110 transition-all duration-500">
-          <img src="{{ asset('assets/bimmsWhite.png')}}">
+        <a href="/" class="w-40 mt-1 mb-2 hover:scale-110 transition-all duration-500">
+          <img src="{{ $isScrolled ? asset('assets/bimmsLogo.png') : asset('assets/bimmsWhite.png') }}">
         </a>
       </div>
 
       {{-- MOBILE Menu --}}
 
       <div class="desktop:hidden flex items-center justify-end mr-1">
-        <div class="mr-4 md:mr-20 lg:mr-10 text-white z-50">
+        <div class="mr-4 md:mr-20 lg:mr-10 z-50 {{ $isScrolled ? 'text-black' : 'text-white' }}">
           <button x-on:click="hamburger = !hamburger, showMenu = !showMenu, $dispatch('toggle-menu', showMenu)" class="flex items-center space-x-2 focus:outline-none">
               <div class="w-6 h-6 flex items-center justify-center relative">
                   <span x-bind:class="hamburger ? 'translate-y-0 rotate-45' : '-translate-y-2'"
@@ -92,55 +92,60 @@
 
       <div class="desktop:flex justify-center items-center space-x-3 hidden">
         <div
-          class="group flex items-center space-x-1 text-white hover:text-bimmsGreen hover:scale-110 transition-all duration-500 cursor-default">
-          <a wire:navigate href="/who-we-are" class="hover:text-bimmsGreen transition-all duration-300">WHO WE ARE</a>
+          class="group flex items-center space-x-1 hover:text-bimmsGreen hover:scale-110 transition-all duration-500 cursor-default {{ $isScrolled ? 'text-black' : 'text-white' }}">
+          <a wire:navigate href="/who-we-are">WHO WE ARE</a>
           <svg xmlns="http://www.w3.org/2000/svg"
-            class="rotate-180 fill-white group-hover:rotate-0 group-hover:fill-bimmsGreen transition-all duration-500 "
+            class="rotate-180 group-hover:rotate-0 group-hover:fill-bimmsGreen transition-all duration-500 {{ $isScrolled ? 'fill-black' : 'fill-white' }}"
             height="1em" viewBox="0 0 320 512">
             <path
               d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
           </svg>
           <div
-            class="absolute bg-gray-900 text-white w-auto min-w-max m-2 top-4 text-sm rounded-md shadow-md transition-all duration-500 scale-0 group-hover:scale-100 origin-top">
-            <ul class="flex flex-col py-1.5">
+            class="absolute bg-white text-black border border-bimmsGreen w-auto min-w-max m-2 top-4 text-sm rounded-md shadow-md transition-all duration-500 scale-0 group-hover:scale-100 origin-top">
+            <ul class="flex flex-col">
               <a wire:navigate href=""
-                class="hover:bg-gray-500 hover:text-bimmsGreen px-2 transition-all duration-300">BIMMS Vision</a>
+                class="hover:bg-gray-500 rounded-t-md py-1 hover:text-bimmsGreen px-2 transition-all duration-300">BIMMS Vision</a>
+                <hr class="border-bimmsGreen">
               <a wire:navigate href=""
-                class="hover:bg-gray-500 hover:text-bimmsGreen px-2 transition-all duration-300">Our Culture</a>
+                class="hover:bg-gray-500 py-1 hover:text-bimmsGreen px-2 transition-all duration-300">Our Culture</a>
+                <hr class="border-bimmsGreen">
               <a wire:navigate href=""
-                class="hover:bg-gray-500 hover:text-bimmsGreen px-2 transition-all duration-300">Leadership</a>
+                class="hover:bg-gray-500 py-1 hover:text-bimmsGreen px-2 transition-all duration-300">Leadership</a>
+                <hr class="border-bimmsGreen">
               <a wire:navigate href=""
-                class="hover:bg-gray-500 hover:text-bimmsGreen px-2 transition-all duration-300">Sustainability
-                Commitment</a>
+                class="hover:bg-gray-500 py-1 hover:text-bimmsGreen px-2 transition-all duration-300">Sustainability Commitment</a>
+                <hr class="border-bimmsGreen">
               <a wire:navigate href=""
-                class="hover:bg-gray-500 hover:text-bimmsGreen px-2 transition-all duration-300">Innovation</a>
+                class="hover:bg-gray-500 py-1 hover:text-bimmsGreen px-2 transition-all duration-300">Innovation</a>
+                <hr class="border-bimmsGreen">
               <a wire:navigate href=""
-                class="hover:bg-gray-500 hover:text-bimmsGreen px-2 transition-all duration-300">BIMMS Positive Impact</a>
+                class="hover:bg-gray-500 rounded-b-md py-1 hover:text-bimmsGreen px-2 transition-all duration-300">BIMMS Positive Impact</a>
             </ul>
           </div>
         </div>
         <a wire:navigate href="/projects"
-          class="text-white hover:text-bimmsGreen hover:scale-110 transition-all duration-500">PROJECTS</a>
+          class="hover:text-bimmsGreen hover:scale-110 transition-all duration-500 {{ $isScrolled ? 'text-black' : 'text-white' }}">PROJECTS</a>
         <a wire:navigate href="/markets"
-          class="text-white hover:text-bimmsGreen hover:scale-110 transition-all duration-500">MARKETS</a>
+          class="hover:text-bimmsGreen hover:scale-110 transition-all duration-500 {{ $isScrolled ? 'text-black' : 'text-white' }}">MARKETS</a>
         <a wire:navigate href="/careers"
-          class="text-white hover:text-bimmsGreen hover:scale-110 transition-all duration-500">CAREERS</a>
+          class="hover:text-bimmsGreen hover:scale-110 transition-all duration-500 {{ $isScrolled ? 'text-black' : 'text-white' }}">CAREERS</a>
         @auth
-        <div class="group flex items-center space-x-1 text-gray-600 hover:text-gray-400 transition-all duration-500 cursor-default">
-          <span>MANAGE ACCOUNT</span>
+        <div class="group flex items-center space-x-1 hover:text-bimmsGreen hover:scale-110 transition-all duration-500 cursor-default {{ $isScrolled ? 'text-black' : 'text-white' }}">
+          <span>ACCOUNT</span>
           <svg xmlns="http://www.w3.org/2000/svg"
-            class="rotate-180 fill-gray-600 group-hover:rotate-0 group-hover:fill-gray-400 transition-all duration-500 "
+            class="rotate-180 group-hover:rotate-0 group-hover:fill-bimmsGreen transition-all duration-500 {{ $isScrolled ? 'fill-black' : 'fill-white' }}"
             height="1em" viewBox="0 0 320 512">
             <path
               d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
           </svg>
           <div
-            class="absolute bg-gray-900 text-white w-32 m-2 top-14 rounded-md shadow-md transition-all duration-500 scale-0 group-hover:scale-100 origin-top">
-            <ul class="flex flex-col py-1.5">
+            class="absolute bg-white text-black border border-bimmsGreen w-32 m-2 top-4 rounded-md shadow-md transition-all duration-500 scale-0 group-hover:scale-100 origin-top">
+            <ul class="flex flex-col">
               <a wire:navigate href="{{ route('profile.show') }}"
-                class="text-gray-400 hover:bg-gray-500 hover:text-gray-900 px-2 transition-all duration-300">Profile</a>
+                class="hover:bg-gray-500 rounded-t-md py-1 hover:text-bimmsGreen px-2 transition-all duration-300">Profile</a>
+              <hr class="border-bimmsGreen">
               <a wire:navigate href="{{ route('logout') }}"
-                class="text-gray-400 hover:bg-gray-500 hover:text-gray-900 px-2 transition-all duration-300" onclick="event.preventDefault();
+                class="hover:bg-gray-500 rounded-b-md py-1 hover:text-bimmsGreen px-2 transition-all duration-300" onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();">
                 Logout
               </a>
