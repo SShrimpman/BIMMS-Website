@@ -1,5 +1,5 @@
 <div>
-    <div id="navbar" class="absolute z-10">
+    <div id="navbar" class="absolute z-10 transition-all duration-500">
         @livewire('navigationmenu')
     </div>
     <div id="parallax" style="perspective: 10px;" class="relative h-screen overflow-y-auto overflow-x-hidden">
@@ -32,6 +32,8 @@
 </div>
 
 <script>
+    const navbar = document.getElementById('navbar');
+    const viewportWidth = window.innerWidth;
     const parallaxDiv = document.getElementById('parallax');
     const bimms = document.getElementById('bimms');
     const handshake = document.getElementById('handshake');
@@ -40,12 +42,12 @@
     const future = document.getElementById('future');
     const dataCenters = document.getElementById('dataCenters');
     const partnership = document.getElementById('partnership');
+    let lastScrollTop = parallaxDiv.scrollY  || parallaxDiv.scrollTop;
 
     function adjustWidth() {
         const scrollBarWidth = parallaxDiv.offsetWidth - parallaxDiv.clientWidth;
         const adjustedWidth = window.innerWidth - scrollBarWidth;
 
-        const navbar = document.getElementById('navbar');
         navbar.style.width = `${adjustedWidth}px`;
     }
 
@@ -57,6 +59,18 @@
             @this.dispatch('scrolled');
         } else {
             @this.dispatch('scrollOnTop');
+        }
+
+        if (viewportWidth < 1281) {
+            const scrollTopPosition = parallaxDiv.scrollTop;
+            if (scrollTopPosition > lastScrollTop) {
+                navbar.classList.add('-translate-y-20');
+                console.log('scrolling down');
+            } else if (scrollTopPosition < lastScrollTop || scrollTopPosition === 0) {
+                navbar.classList.remove('-translate-y-20');
+                console.log('scrolling up or at the top');
+            }
+            lastScrollTop = scrollTopPosition <= 0 ? 0 : scrollTopPosition;
         }
 
         const observer = new IntersectionObserver(entries => {
