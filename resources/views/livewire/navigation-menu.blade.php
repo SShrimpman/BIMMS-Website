@@ -62,15 +62,15 @@
                     @auth
                       <li class="relative">
                         <div class="flex justify-center items-center cursor-default" @click="account = !account">
-                            <span class="block outline-0 no-underline text-xl text-gray-400" href="#">MANAGE ACCOUNT</span>
+                            <span class="block outline-0 no-underline text-xl text-white" href="#">ACCOUNT</span>
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                class="fill-gray-400 ml-2  transition-all"
-                                :class="{'rotate-0 duration-700': account, 'rotate-180 duration-1000': !account }"
+                                class="fill-white ml-2  transition-all"
+                                :class="{'rotate-0 duration-500': account, 'rotate-180 duration-1000': !account }"
                                 height="1em" viewBox="0 0 320 512">
                                 <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
                             </svg>
                         </div>
-                        <ul class="space-y-2 overflow-hidden transition-all duration-1000 text-gray-400"
+                        <ul class="space-y-2 overflow-hidden transition-all duration-1000 text-white"
                             :class="{ 'max-h-[400px]': account, 'max-h-0': !account}">
                             <li><a wire:navigate href="{{ route('profile.show') }}" class="block m-4 outline-0 no-underline">Profile</a></li>
                             <li>
