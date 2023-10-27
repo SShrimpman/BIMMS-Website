@@ -49,7 +49,7 @@
     // -------------------------------------------------Variables-----------------------------------------------------
 
         const navbar = document.getElementById('navbar'); // Navbar Element
-        const viewportWidth = window.innerWidth; // Element with the Width of the screen
+        const viewportWidth = window.innerWidth; // Element with the Width of the Screen/Viewport
         const parallaxDiv = document.getElementById('parallax'); // Parallax Element
         const bimms = document.getElementById('bimms'); // Bimms Text Element in the center of the first section
         const handshake = document.getElementById('handshake'); // Handshake SVG Element right next to Bimms Text
@@ -67,9 +67,9 @@
 
         function adjustWidth() {
             const scrollBarWidth = parallaxDiv.offsetWidth - parallaxDiv.clientWidth; // Variable to calculate the width of the scrollbar
-            const adjustedWidth = window.innerWidth - scrollBarWidth; // Variable with the adjusted width without the scrollbar
+            const adjustedWidth = window.innerWidth - scrollBarWidth; // Variable with the adjusted width (without the scrollbar)
 
-            navbar.style.width = `${adjustedWidth}px`; // Navbar width applied with the adjusted width without the scrollbar
+            navbar.style.width = `${adjustedWidth}px`; // Adjusted width applied to the Navbar
         }
 
         // Code to dynamically adjust the width of the navbar
@@ -81,9 +81,9 @@
     // -----------------------------------------Code of the Scroll Events--------------------------------------------
 
         function handleScroll() {
-            const scrollTopPosition = parallaxDiv.scrollTop; // Variable to verify if the scroll is on top of the page, if it is equal to 0 it is on top, if it is bigger it's not
+            const scrollTopPosition = parallaxDiv.scrollTop; // Variable to verify if the scroll is on top of the page, if it's equal to 0 it's on top, if it's bigger it's not
 
-            // Condition to verify if a scrolled ocurred to dispatch events to the navbar to stylise it accordingly
+            // Condition to verify if a scrolled ocurred to dispatch events to the navbar component to stylise it accordingly
             if (scrollTopPosition > 0) {
                 @this.dispatch('scrolled');
             } else {
@@ -93,13 +93,13 @@
             // Condition to verify if the viewport is for Tablet or Mobile to Hide the navbar on scroll down and show it on scroll up
             if (viewportWidth < 1281) {
                 navbar.classList.toggle('-translate-y-20', scrollTopPosition > lastScrollTop && scrollTopPosition > 0);
-                lastScrollTop = Math.max(scrollTopPosition, 0); // This line ensures that lastScrollTop is always greater than or equal to 0. If scrollTopPosition is negative, it sets lastScrollTop to 0.
+                lastScrollTop = Math.max(scrollTopPosition, 0); // This ensures that lastScrollTop is always greater than or equal to 0. If 'scrollTopPosition' is negative, it sets lastScrollTop to 0.
             }
 
             // Code to verify when the elements are intersecting in the view to remove/add styles to animate them
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
-                    const isBelow = entry.boundingClientRect.top > 0; // Variable to check if the element position is below in the viewport
+                    const isBelow = entry.boundingClientRect.top > 0; // Variable to check if the element position is below in the Screen/Viewport
 
                     if (entry.isIntersecting) {
                         entry.target.classList.remove('opacity-0', 'translate-y-20');
