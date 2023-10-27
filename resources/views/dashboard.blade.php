@@ -46,91 +46,81 @@
 </div>
 
 <script>
-    // ----------------------------------Variables--------------------------------------
+    // -------------------------------------------------Variables-----------------------------------------------------
 
-        const navbar = document.getElementById('navbar');
-        const viewportWidth = window.innerWidth;
-        const parallaxDiv = document.getElementById('parallax');
-        const bimms = document.getElementById('bimms');
-        const handshake = document.getElementById('handshake');
-        const cts = document.getElementById('cts');
-        const partOf = document.getElementById('partOf');
-        const future = document.getElementById('future');
-        const dataCenters = document.getElementById('dataCenters');
-        const partnership = document.getElementById('partnership');
-        let lastScrollTop = parallaxDiv.scrollY  || parallaxDiv.scrollTop;
+        const navbar = document.getElementById('navbar'); // Navbar Element
+        const viewportWidth = window.innerWidth; // Element with the Width of the screen
+        const parallaxDiv = document.getElementById('parallax'); // Parallax Element
+        const bimms = document.getElementById('bimms'); // Bimms Text Element in the center of the first section
+        const handshake = document.getElementById('handshake'); // Handshake SVG Element right next to Bimms Text
+        const cts = document.getElementById('cts'); // CTS Logo Element right next to the Handshake
+        const partOf = document.getElementById('partOf'); // Phrase Element right next to the CTs Logo
+        const elementsToAnimate = [bimms, handshake, cts, partOf]; // Array of the 4 elements above
+        const future = document.getElementById('future'); // First Text Title inside the Parallax effect element
+        const dataCenters = document.getElementById('dataCenters'); // Second Text Title inside the Parallax effect element
+        const partnership = document.getElementById('partnership'); // Phrase inside the Parallax effect element
+        let lastScrollTop = parallaxDiv.scrollY || parallaxDiv.scrollTop; // Position of the scroll last time it moved and stopped
 
-    // ---------------------------------------------------------------------------------
+    // ---------------------------------------------------------------------------------------------------------------
 
-    // ---------------------Code to Adjust the Width of The Navbar----------------------
+    // -------------------------------------Code to Adjust the Width of The Navbar------------------------------------
 
         function adjustWidth() {
-            // variable to calculate the width of the scrollbar
-                const scrollBarWidth = parallaxDiv.offsetWidth - parallaxDiv.clientWidth;
-            // variable with the adjusted width without the scrollbar
-                const adjustedWidth = window.innerWidth - scrollBarWidth;
+            const scrollBarWidth = parallaxDiv.offsetWidth - parallaxDiv.clientWidth; // Variable to calculate the width of the scrollbar
+            const adjustedWidth = window.innerWidth - scrollBarWidth; // Variable with the adjusted width without the scrollbar
 
-            navbar.style.width = `${adjustedWidth}px`;
+            navbar.style.width = `${adjustedWidth}px`; // Navbar width applied with the adjusted width without the scrollbar
         }
 
         // Code to dynamically adjust the width of the navbar
-            window.onload = adjustWidth;
             window.addEventListener('resize', adjustWidth);
+            window.onload = adjustWidth;
 
-    // --------------------------------------------------------------------------------
+    // --------------------------------------------------------------------------------------------------------------
 
-    // ------------------------Code of the Scroll Events-------------------------------
+    // -----------------------------------------Code of the Scroll Events--------------------------------------------
 
-        parallaxDiv.addEventListener('scroll', function() {
-            // Condition to verify if a scrolled ocurred to dispatch events to the navbar to stylise it
-                if( parallaxDiv.scrollTop > 0 ) {
-                    @this.dispatch('scrolled');
-                } else {
-                    @this.dispatch('scrollOnTop');
-                }
+        function handleScroll() {
+            const scrollTopPosition = parallaxDiv.scrollTop; // Variable to verify if the scroll is on top of the page, if it is equal to 0 it is on top, if it is bigger it's not
 
-            // Condition to verify if the viewport is for Tablet or Mobile to Hide the navbar on scroll down
-                if (viewportWidth < 1281) {
-                    const scrollTopPosition = parallaxDiv.scrollTop;
-                    if (scrollTopPosition > lastScrollTop) {
-                        navbar.classList.add('-translate-y-20');
-                        console.log('scrolling down');
-                    } else if (scrollTopPosition < lastScrollTop || scrollTopPosition === 0) {
-                        navbar.classList.remove('-translate-y-20');
-                        console.log('scrolling up or at the top');
-                    }
-                    lastScrollTop = scrollTopPosition <= 0 ? 0 : scrollTopPosition;
-                }
+            // Condition to verify if a scrolled ocurred to dispatch events to the navbar to stylise it accordingly
+            if (scrollTopPosition > 0) {
+                @this.dispatch('scrolled');
+            } else {
+                @this.dispatch('scrollOnTop');
+            }
+
+            // Condition to verify if the viewport is for Tablet or Mobile to Hide the navbar on scroll down and show it on scroll up
+            if (viewportWidth < 1281) {
+                navbar.classList.toggle('-translate-y-20', scrollTopPosition > lastScrollTop && scrollTopPosition > 0);
+                lastScrollTop = Math.max(scrollTopPosition, 0); // This line ensures that lastScrollTop is always greater than or equal to 0. If scrollTopPosition is negative, it sets lastScrollTop to 0.
+            }
 
             // Code to verify when the elements are intersecting in the view to remove/add styles to animate them
-                const observer = new IntersectionObserver(entries => {
-                    entries.forEach(entry => {
-                        const isBelow = entry.boundingClientRect.top > 0;
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    const isBelow = entry.boundingClientRect.top > 0; // Variable to check if the element position is below in the viewport
 
-                        if (entry.isIntersecting) {
-                            entry.target.classList.remove('opacity-0');
-                            entry.target.classList.remove('translate-y-20');
-                        } else if (isBelow) {
-                            entry.target.classList.add('opacity-0');
-                            entry.target.classList.add('translate-y-20');
-                        }
-                    });
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove('opacity-0', 'translate-y-20');
+                    } else if (isBelow) {
+                        entry.target.classList.add('opacity-0', 'translate-y-20');
+                    }
                 });
-                observer.observe(future);
-                observer.observe(dataCenters);
-                observer.observe(partnership);
-        });
+            });
 
-    // -------------------------------------------------------------------------------
+            [future, dataCenters, partnership].forEach(element => observer.observe(element));
+        }
 
-    //--Code to remove the opacity for the animation in the initial load of the page--
+        parallaxDiv.addEventListener('scroll', handleScroll);
+
+    // -------------------------------------------------------------------------------------------------------------
+
+    // ---------------Code to remove the opacity for the animation in the initial load of the page------------------
 
         document.addEventListener('DOMContentLoaded', function() {
-            bimms.classList.remove('opacity-0');
-            handshake.classList.remove('opacity-0');
-            cts.classList.remove('opacity-0');
-            partOf.classList.remove('opacity-0');
+            elementsToAnimate.forEach(element => element.classList.remove('opacity-0'));
         });
 
-    // -------------------------------------------------------------------------------
+    // -------------------------------------------------------------------------------------------------------------
 </script>
