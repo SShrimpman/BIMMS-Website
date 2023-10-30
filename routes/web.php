@@ -60,6 +60,8 @@ Route::get('/careers', Careers::class)->name('careers');
 
 // Route::get('/login', \App\Livewire\Login::class)->name('login'); // Use your Livewire component for login
 
+// A rota Login é feita através do middleware e do jetstream que está em baixo
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

@@ -16,10 +16,11 @@ class Login extends Component
             'password' => $this->password,
         ];
 
+        // Validação das minhas credenciais
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard'); // Redirect to dashboard after login
+            return redirect()->route('dashboard'); // Redireciona para a dashboard se o login for efetuado
         } else {
-            // Handle failed login
+            // Irá tratar da falha no login e retornar uma mensagem se as credenciais estiverem erradas
             session()->flash('message', 'Invalid credentials');
         }
     }

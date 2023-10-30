@@ -1,5 +1,8 @@
 <div x-data="{ showMenu: false, hamburger: false }">
+    {{-- A variável 'isScrolled' vem do component do Livewire, ela vai ser TRUE or FALSE dependendo do evento que tiver sido emitido na dashboard --}}
     <div class="grid grid-cols-2 transition-colors duration-500 {{ $isScrolled ? 'bg-white shadow-shadowBot' : 'bg-transparent' }}">
+        {{-- Logo com link para a página principal --}}
+
       <div class="flex justify-center">
         <a href="/" class="w-40 mt-1 mb-2 hover:scale-110 transition-all duration-500">
           <img style="transition: opacity 0.5s ease-in;" src="{{ $isScrolled ? asset('assets/bimmsLogo.png') : asset('assets/bimmsWhite.png') }}">
@@ -9,6 +12,7 @@
       {{-- MOBILE Menu --}}
 
       <div class="desktop:hidden flex items-center justify-end mr-1">
+        {{-- Ícone do Hamburger --}}
         <div class="mr-4 md:mr-20 lg:mr-10 z-50 {{ $isScrolled ? 'text-black' : 'text-white' }}">
           <button x-on:click="hamburger = !hamburger, showMenu = !showMenu, $dispatch('toggle-menu', showMenu)" class="flex items-center space-x-2 focus:outline-none">
               <div class="w-6 h-6 flex items-center justify-center relative">
@@ -24,6 +28,7 @@
           </button>
         </div>
       </div>
+      {{-- Animação para mostrar o menu vindo da direita --}}
       <div x-show="showMenu" x-on:enter="document.body.classList.add('overflow-hidden')" x-on:leave="document.body.classList.remove('overflow-hidden')"
            x-transition:enter="transition ease-in duration-300 transform"
            x-transition:enter-start="translate-x-full"
@@ -34,6 +39,7 @@
            class="fixed h-full top-0 right-0 items-center backdrop-blur-xl z-10 w-full select-none">
         <div class="flex justify-center items-center h-full w-full mt-8">
             <nav class="float-left text-white">
+                {{-- Esta variável vai ser usada para mostrar o hidden content ao clickar na seta --}}
                 <ul class="list-none space-y-4 text-center" x-data="{ open: false, account: false }">
                     <li class="relative">
                         <div class="flex justify-center items-center">
@@ -59,6 +65,7 @@
                     <li><a wire:navigate href="/projects" class="block outline-0 no-underline text-xl" href="#">PROJECTS</a></li>
                     <li><a wire:navigate href="/markets" class="block outline-0 no-underline text-xl" href="#">MARKETS</a></li>
                     <li><a wire:navigate href="/careers" class="block outline-0 no-underline text-xl" href="#">CAREERS</a></li>
+                    {{-- Este conteúdo apenas aparece quando inicio sessão a partir da rota /login --}}
                     @auth
                       <li class="relative">
                         <div class="flex justify-center items-center cursor-default" @click="account = !account">
@@ -91,6 +98,7 @@
       {{-- DESKTOP Menu --}}
 
       <div class="desktop:flex justify-center items-center space-x-3 hidden">
+        {{-- Ao dar hover no texto, mostro as opções que estão hidden --}}
         <div
           class="group flex items-center space-x-1 hover:text-bimmsGreen hover:scale-110 transition-all duration-500 cursor-default {{ $isScrolled ? 'text-black' : 'text-white' }}">
           <a wire:navigate href="/who-we-are">WHO WE ARE</a>
@@ -129,6 +137,7 @@
           class="hover:text-bimmsGreen hover:scale-110 transition-all duration-500 {{ $isScrolled ? 'text-black' : 'text-white' }}">MARKETS</a>
         <a wire:navigate href="/careers"
           class="hover:text-bimmsGreen hover:scale-110 transition-all duration-500 {{ $isScrolled ? 'text-black' : 'text-white' }}">CAREERS</a>
+        {{-- Este conteúdo apenas aparece quando inicio sessão a partir da rota /login --}}
         @auth
         <div class="group flex items-center space-x-1 hover:text-bimmsGreen hover:scale-110 transition-all duration-500 cursor-default {{ $isScrolled ? 'text-black' : 'text-white' }}">
           <span>ACCOUNT</span>

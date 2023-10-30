@@ -18,6 +18,7 @@
         @livewireStyles
     </head>
     <body>
+        {{-- Este video é aquele que eu uso no background juntamente com um filtro para escurecer o mesmo, este layout é apenas usado na rota /login --}}
         <video src="{{ asset('assets/rev@.mp4')}}" autoplay muted loop
             style="width: 100vw;
             height: 100vh;
