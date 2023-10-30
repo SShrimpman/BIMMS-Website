@@ -9,8 +9,8 @@
 
 ## To Initialize:
 
-git init (on folder you want to work)
-git clone githubLinkOfThisRepository.com
+- git init (on folder you want to work)
+- git clone githubLinkOfThisRepository.com
 
 What is needed:
 
