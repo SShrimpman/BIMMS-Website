@@ -25,3 +25,15 @@ To run the project:
 - composer install
 - php artisan migrate (after changing the name of the database on .env file)
 - php artisan serve
+
+Recommended extensions (on VSCode):
+
+- PHP Intelephense
+- Tailwind CSS IntelliSense
+- Inline fold (to fold the 'class' of the HTML Elements, it's a good extension to complement with TailwindCSS)
+- Laravel Extension Pack
+- Livewire Language Support
+- Livewire goto
+- Alpine.js IntelliSense
+- Alpine.js Syntax Highlight
+- Tabnine (totally optional)
